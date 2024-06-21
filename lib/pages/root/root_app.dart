@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../components/root/dotube_navigation_bar.dart';
 import '../../components/root/sidebar.dart';
 
 const rootPaths = {
@@ -45,10 +46,15 @@ class RootApp extends HookConsumerWidget {
         Navigator.of(context).pop();
       },
       child: Scaffold(
+        extendBody: true,
         body: Sidebar(
           selectedIndex: rootPaths[location],
           onSelectedIndexChanged: onSelectIndexChanged,
           child: child,
+        ),
+        bottomNavigationBar: DotubeNavigationBar(
+          selectedIndex: rootPaths[location],
+          onSelectedIndexChanged: onSelectIndexChanged,
         ),
       ),
     );
